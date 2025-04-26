@@ -1,0 +1,51 @@
+# templates/provas.html
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <title>Lista de Provas</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 2rem; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { padding: 0.5rem; border: 1px solid #ccc; text-align: left; }
+      th { background-color: #f4f4f4; }
+    </style>
+  </head>
+  <body>
+    <h1>Provas Disponíveis</h1>
+    {% if provas %}
+    <table>
+      <thead>
+        <tr>
+          <th>Curso</th>
+          <th>Disciplina</th>
+          <th>Semestre</th>
+          <th>Professor</th>
+          <th>Unidade</th>
+          <th>Arquivo</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in provas %}
+        <tr>
+          <td>{{ p.curso }}</td>
+          <td>{{ p.disciplina }}</td>
+          <td>{{ p.semestre }}</td>
+          <td>{{ p.professor }}</td>
+          <td>{{ p.unidade }}</td>
+          <td>
+            {% if p.url %}
+            <a href="{{ p.url }}">Baixar PDF</a>
+            {% else %}
+            Sem arquivo
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p>Nenhuma prova cadastrada.</p>
+    {% endif %}
+  </body>
+</html>
