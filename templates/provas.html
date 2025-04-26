@@ -1,4 +1,3 @@
-# templates/provas.html
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -9,10 +8,23 @@
       table { width: 100%; border-collapse: collapse; }
       th, td { padding: 0.5rem; border: 1px solid #ccc; text-align: left; }
       th { background-color: #f4f4f4; }
+      a { color: blue; text-decoration: none; }
+      a:hover { text-decoration: underline; }
     </style>
   </head>
   <body>
     <h1>Provas Disponíveis</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li style="color: green;">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
     {% if provas %}
     <table>
       <thead>
@@ -35,9 +47,9 @@
           <td>{{ p.unidade }}</td>
           <td>
             {% if p.url %}
-            <a href="{{ p.url }}">Baixar PDF</a>
+              <a href="{{ p.url }}" target="_blank">Baixar PDF</a>
             {% else %}
-            Sem arquivo
+              Sem arquivo
             {% endif %}
           </td>
         </tr>

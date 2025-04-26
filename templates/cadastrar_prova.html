@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastrar Prova</title>
+</head>
+<body>
+  <h1>Cadastrar Prova</h1>
+
+  <form action="/cadastrar_prova/" method="post" enctype="multipart/form-data">
+    <label for="curso">Curso:</label><br>
+    <input type="text" id="curso" name="curso" required><br><br>
+
+    <label for="disciplina">Disciplina:</label><br>
+    <input type="text" id="disciplina" name="disciplina" required><br><br>
+
+    <label for="semestre">Semestre:</label><br>
+    <input type="text" id="semestre" name="semestre" required><br><br>
+
+    <label for="professor">Professor:</label><br>
+    <input type="text" id="professor" name="professor" required><br><br>
+
+    <label for="unidade">Unidade:</label><br>
+    <input type="text" id="unidade" name="unidade" required><br><br>
+
+    <label for="pdf_prova">Arquivo da Prova (PDF):</label><br>
+    <input type="file" id="pdf_prova" name="pdf_prova" accept="application/pdf" required><br><br>
+
+    <button type="submit">Cadastrar Prova</button>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li style="color: green;">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+  </form>
+</body>
+</html>
